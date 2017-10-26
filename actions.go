@@ -10,7 +10,7 @@ import (
 
 // Block creates a blocking executional group that waits until some other group
 // action finishing, causing the closing of the group action.
-func Block(g Group) {
+func Block(g *Group) {
 	cancel := make(chan struct{})
 	g.Add(func() error {
 		<-cancel
@@ -22,7 +22,7 @@ func Block(g Group) {
 
 // Interrupt creates a blocking executional group that becomes free if a
 // interupt or terminate os signal is received.
-func Interrupt(g Group) {
+func Interrupt(g *Group) {
 	cancel := make(chan struct{})
 	g.Add(func() error {
 		return interrupt(cancel)
