@@ -7,6 +7,11 @@ type Group struct {
 	actions []action
 }
 
+// NewGroup creates a new group
+func NewGroup() *Group {
+	return &Group{}
+}
+
 // Add an action (function) to the group. Each action must be pre-emptable by an
 // interrupt function. That is, if interrupt is invoked, execute should return.
 // Also is must be safe to call interrupt even after execute has returned.
